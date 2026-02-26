@@ -1,0 +1,39 @@
+/* ─── Explanation panel ─────────────────────────────────────────────────── */
+.explanation {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.75;
+  min-height: 68px;
+  transition: border-left-color 0.4s ease;
+}
+
+/* ─── Tag badge ─────────────────────────────────────────────────────────── */
+.explanation__tag {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.15);
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+/* ─── Inline formatting passed via dangerouslySetInnerHTML ──────────────── */
+.explanation strong {
+  color: var(--yellow);
+  font-weight: 700;
+}
+
+.explanation em {
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 700;
+}

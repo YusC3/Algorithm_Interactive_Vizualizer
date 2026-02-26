@@ -1,0 +1,241 @@
+/* ─── Google Fonts are loaded in index.html ─────────────────────────────── */
+
+/* ─── CSS Variables ─────────────────────────────────────────────────────── */
+:root {
+  --bg:       #0a0e1a;
+  --panel:    #111827;
+  --border:   #1e2d45;
+  --accent:   #00d4ff;
+  --accent2:  #ff6b35;
+  --accent3:  #7c3aed;
+  --green:    #10b981;
+  --yellow:   #fbbf24;
+  --text:     #e2e8f0;
+  --muted:    #64748b;
+
+  /* Node colors */
+  --node-v:   #00d4ff;
+  --node-a:   #7c3aed;
+  --node-b:   #ff6b35;
+  --node-t:   #10b981;
+
+  --radius:   12px;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Syne', sans-serif;
+}
+
+/* ─── Reset ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse at 15% 15%, rgba(0,212,255,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 85%, rgba(124,58,237,0.05) 0%, transparent 50%);
+}
+
+/* ─── App Shell ─────────────────────────────────────────────────────────── */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ─── Header ────────────────────────────────────────────────────────────── */
+.app__header {
+  padding: 2rem 0 1.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+
+.app__header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.app__title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, var(--accent), var(--accent3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app__subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+
+/* ─── Example Selector ──────────────────────────────────────────────────── */
+.example-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.example-selector__label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.example-selector__select {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.example-selector__select:focus {
+  border-color: var(--accent);
+}
+
+/* ─── Main ──────────────────────────────────────────────────────────────── */
+.app__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-bottom: 2rem;
+}
+
+/* ─── Description bar ───────────────────────────────────────────────────── */
+.app__description {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background: rgba(124,58,237,0.2);
+  color: var(--accent3);
+  border: 1px solid rgba(124,58,237,0.3);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.description-text {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ─── Two-column panel layout ───────────────────────────────────────────── */
+.app__panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .app__panels {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Panel ─────────────────────────────────────────────────────────────── */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.panel__label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+/* ─── Legend ────────────────────────────────────────────────────────────── */
+.legend {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.legend__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend__label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+/* ─── Footer ────────────────────────────────────────────────────────────── */
+.app__footer {
+  border-top: 1px solid var(--border);
+  padding: 1rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ─── Back button + header left group ───────────────────────────────────── */
+.app__header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.app__back-btn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.app__back-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}

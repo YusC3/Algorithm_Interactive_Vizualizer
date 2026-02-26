@@ -1,0 +1,129 @@
+[
+  {
+    "id": "bellman-ford-basic",
+    "name": "Bellman-Ford: Basic Example",
+    "algorithm": "bellman-ford",
+    "description": "A simple digraph with 4 nodes demonstrating shortest path from every node to t.",
+    "nodes": [
+      { "id": "v", "label": "v", "x": 80,  "y": 110, "colorVar": "--node-v" },
+      { "id": "A", "label": "A", "x": 280, "y": 110, "colorVar": "--node-a" },
+      { "id": "B", "label": "B", "x": 280, "y": 210, "colorVar": "--node-b" },
+      { "id": "t", "label": "t", "x": 380, "y": 145, "colorVar": "--node-t" }
+    ],
+    "edges": [
+      { "id": "e-vA", "from": "v", "to": "A", "weight": 2,
+        "pathD": "M 105,105 Q 185,65 255,105",
+        "weightPos": { "x": 178, "y": 72 } },
+      { "id": "e-vt", "from": "v", "to": "t", "weight": 7,
+        "pathD": "M 100,120 Q 220,210 355,158",
+        "weightPos": { "x": 212, "y": 210 } },
+      { "id": "e-At", "from": "A", "to": "t", "weight": 3,
+        "pathD": "M 307,102 Q 343,78 357,120",
+        "weightPos": { "x": 340, "y": 82 } },
+      { "id": "e-AB", "from": "A", "to": "B", "weight": 1,
+        "pathD": "M 278,137 Q 278,168 278,183",
+        "weightPos": { "x": 286, "y": 163 } },
+      { "id": "e-Bt", "from": "B", "to": "t", "weight": 2,
+        "pathD": "M 305,204 Q 340,200 357,170",
+        "weightPos": { "x": 344, "y": 196 } }
+    ],
+    "target": "t",
+    "steps": [
+      {
+        "label": "i = 0",
+        "tag": "Base Case",
+        "rowIndex": 0,
+        "activeCol": null,
+        "improvedCols": [],
+        "highlightEdges": [],
+        "optimalEdges": [],
+        "isFinal": false,
+        "explanation": "With <strong>0 edges</strong>, only <em>t</em> can reach itself (cost = 0). All other nodes are set to <strong>∞</strong> — they cannot reach t in zero hops."
+      },
+      {
+        "label": "i = 1",
+        "tag": "i = 1",
+        "rowIndex": 1,
+        "activeCol": 2,
+        "improvedCols": [2],
+        "highlightEdges": ["e-Bt"],
+        "optimalEdges": [],
+        "isFinal": false,
+        "explanation": "Checking <em>B → t</em> (weight 2). OPT(1, B) = ℓ(B,t) + OPT(0,t) = <strong>2 + 0 = 2</strong>. Improved from ∞!"
+      },
+      {
+        "label": "i = 1",
+        "tag": "i = 1",
+        "rowIndex": 1,
+        "activeCol": 1,
+        "improvedCols": [1, 2],
+        "highlightEdges": ["e-At"],
+        "optimalEdges": [],
+        "isFinal": false,
+        "explanation": "Checking <em>A → t</em> (weight 3). OPT(1, A) = ℓ(A,t) + OPT(0,t) = <strong>3 + 0 = 3</strong>. Improved from ∞!"
+      },
+      {
+        "label": "i = 1",
+        "tag": "i = 1",
+        "rowIndex": 1,
+        "activeCol": 0,
+        "improvedCols": [0, 1, 2],
+        "highlightEdges": ["e-vt"],
+        "optimalEdges": [],
+        "isFinal": false,
+        "explanation": "Checking <em>v → t</em> (weight 7). OPT(1, v) = ℓ(v,t) + OPT(0,t) = <strong>7 + 0 = 7</strong>. Improved from ∞ — but not optimal yet!"
+      },
+      {
+        "label": "i = 2",
+        "tag": "i = 2",
+        "rowIndex": 2,
+        "activeCol": 0,
+        "improvedCols": [0],
+        "highlightEdges": ["e-vA"],
+        "optimalEdges": [],
+        "isFinal": false,
+        "explanation": "Checking <em>v → A</em>. OPT(2, v) = min( OPT(1,v)=7, ℓ(v,t)+OPT(1,t)=7, ℓ(v,A)+OPT(1,A) = <strong>2+3=5</strong> ) = <strong>5</strong>. Improved!"
+      },
+      {
+        "label": "i = 2",
+        "tag": "i = 2",
+        "rowIndex": 2,
+        "activeCol": null,
+        "improvedCols": [0],
+        "highlightEdges": [],
+        "optimalEdges": ["e-vA", "e-At"],
+        "isFinal": false,
+        "explanation": "Row i=2 complete. Best path for <em>v</em> is now <strong>v → A → t (cost 5)</strong>. A and B are unchanged — their i=1 answers were already optimal."
+      },
+      {
+        "label": "i = 3",
+        "tag": "i = 3",
+        "rowIndex": 3,
+        "activeCol": null,
+        "improvedCols": [],
+        "highlightEdges": [],
+        "optimalEdges": ["e-vA", "e-At"],
+        "isFinal": false,
+        "explanation": "Row i=3 is identical to i=2 — <strong>no improvements</strong>. The table has stabilized! This is the convergence signal in Bellman-Ford."
+      },
+      {
+        "label": "Done",
+        "tag": "✓ Complete",
+        "rowIndex": 3,
+        "activeCol": null,
+        "improvedCols": [],
+        "highlightEdges": [],
+        "optimalEdges": ["e-vA", "e-At"],
+        "isFinal": true,
+        "explanation": "Final shortest distances to t: <strong>v = 5</strong> (v→A→t), <strong>A = 3</strong> (A→t), <strong>B = 2</strong> (B→t), <strong>t = 0</strong>."
+      }
+    ],
+    "tableColumns": ["v", "A", "B", "t"],
+    "tableRows": [
+      { "i": 0, "values": ["∞", "∞", "∞", "0"] },
+      { "i": 1, "values": ["7",  "3",  "2",  "0"] },
+      { "i": 2, "values": ["5",  "3",  "2",  "0"] },
+      { "i": 3, "values": ["5",  "3",  "2",  "0"] }
+    ]
+  }
+]

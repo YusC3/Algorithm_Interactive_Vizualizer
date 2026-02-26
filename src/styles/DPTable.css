@@ -1,0 +1,79 @@
+/* ─── Wrapper ───────────────────────────────────────────────────────────── */
+.dp-table-wrapper {
+  overflow-x: auto;
+}
+
+/* ─── Table ─────────────────────────────────────────────────────────────── */
+.dp-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 4px;
+  font-family: var(--font-mono);
+}
+
+/* ─── Header row ────────────────────────────────────────────────────────── */
+.th-row-label {
+  width: 60px;
+}
+
+.th-col {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 6px 10px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Row label cells ───────────────────────────────────────────────────── */
+.td-row-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+
+/* ─── Data cells ────────────────────────────────────────────────────────── */
+.td-cell {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 0.88rem;
+  min-width: 54px;
+  transition: background 0.35s ease, border-color 0.35s ease,
+              color 0.35s ease, transform 0.35s ease;
+}
+
+/* ─── Cell states ───────────────────────────────────────────────────────── */
+.cell-inf {
+  color: var(--border);
+}
+
+.cell-active {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  transform: scale(1.06);
+}
+
+.cell-improved {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: var(--green);
+  color: var(--green);
+  font-weight: 700;
+}
+
+.cell-final {
+  background: rgba(16, 185, 129, 0.22);
+  border-color: var(--green);
+  color: var(--green);
+  font-weight: 700;
+}
+
+/* ─── Hidden rows (not yet revealed) ───────────────────────────────────── */
+.row-hidden .td-cell {
+  color: var(--border);
+  background: transparent;
+}
